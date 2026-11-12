@@ -17,6 +17,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Test the registry script
+        run: python3 -m unittest discover -s tests
+
       - name: Check the examples' entries (no download)
         run: python3 scripts/registry.py check --offline examples/entries/*.toml
 

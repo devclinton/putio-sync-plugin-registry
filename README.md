@@ -49,6 +49,7 @@ complete plugins and their entries to copy from.
 | `examples/` | Example plugins and their entries |
 | `REVIEW.md` | The review checklist |
 | `scripts/registry.py` | Checks entries and builds `index.json` (used by CI) |
+| `tests/` | Tests for the script: `python3 -m unittest discover -s tests` |
 
 ## License
 
