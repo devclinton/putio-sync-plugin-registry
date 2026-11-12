@@ -18,5 +18,5 @@ from_config = ["url"]
 version = "1.0.0"
 url = "https://github.com/devclinton/putio-sync-plugin-registry/releases/download/examples-v1.0.0/webhook-notifier-1.0.0.tar.gz"
 sha256 = "6b6ff5935501e89b34775b0b8c617ce59bc028d4257b54e79610ace82a37b0cb"
-min_putio_sync = "0.3.0"
+min_putio_sync = "0.4.0"
 notes = "https://github.com/devclinton/putio-sync-plugin-registry/releases/tag/examples-v1.0.0"

@@ -116,7 +116,7 @@ def check_entry(path, entry):
             err(where, "version must look like 1.2.3")
             continue
         if not VERSION.match(rel.get("min_putio_sync", "")):
-            err(where, "min_putio_sync must look like 0.3.0")
+            err(where, "min_putio_sync must look like 0.4.0")
         if not https(rel.get("url")):
             err(where, "url must be an https address")
         elif not rel["url"].endswith((".tar.gz", ".tgz", ".wasm")):

@@ -17,5 +17,5 @@ from_config = ["summary_url"]
 version = "1.0.0"
 url = "https://github.com/devclinton/putio-sync-plugin-registry/releases/download/examples-v1.0.0/download-counter-1.0.0.tar.gz"
 sha256 = "2f22e18b7c0eab2038de9a79cd95fe1a5376da51966de75c4ce7a67a6fd7cde6"
-min_putio_sync = "0.3.0"
+min_putio_sync = "0.4.0"
 notes = "https://github.com/devclinton/putio-sync-plugin-registry/releases/tag/examples-v1.0.0"
