@@ -1,0 +1,26 @@
+# Copy to plugins/<name>.toml and fill in. Every field without "optional" is required.
+
+name = "my-plugin"                       # same as the manifest; letters, digits, - and _; up to 40
+description = "One sentence on what it does"   # up to 300 characters
+author = "Your Name"                     # a person or a GitHub login
+repository = "https://github.com/you/putio-sync-my-plugin"
+license = "MIT"                          # SPDX identifier, OSI-approved
+docs = "https://github.com/you/putio-sync-my-plugin#readme"    # optional
+runtime = "lua"                          # optional: "lua" (default) or "wasm"
+events = ["download.finished"]           # same as the manifest
+hooks = []                               # optional: sync rules, "filter", "rename", "folder"
+
+[hosts]
+fixed = []                               # [permissions.http] hosts
+from_config = ["url"]                    # [permissions.http] host_from_config
+
+# One [[releases]] per version, newest first. Keep old ones so pinned installs still verify.
+[[releases]]
+version = "1.0.0"                        # same as the manifest
+url = "https://github.com/you/putio-sync-my-plugin/releases/download/v1.0.0/my-plugin-1.0.0.tar.gz"   # or a .wasm
+sha256 = "<64 hex characters>"           # shasum -a 256 my-plugin-1.0.0.tar.gz
+min_putio_sync = "0.3.0"                 # the lowest putio-sync version it works with
+notes = "https://github.com/you/putio-sync-my-plugin/releases/tag/v1.0.0"   # optional
+
+# Set by a maintainer to pull a plugin. Installed copies keep working and show the reason.
+# withdrawn = "Uses an API the service shut down"

@@ -1,0 +1,29 @@
+name = "webhook-notifier"
+version = "1.0.0"
+description = "POST a small JSON message to a webhook when a download finishes or fails"
+events = ["download.finished", "download.failed"]
+
+author = "devclinton"
+license = "MIT"
+homepage = "https://github.com/devclinton/putio-sync-plugin-registry"
+docs = "https://github.com/devclinton/putio-sync-plugin-registry/tree/main/examples/webhook-notifier#readme"
+repository = "https://github.com/devclinton/putio-sync-plugin-registry"
+issues = "https://github.com/devclinton/putio-sync-plugin-registry/issues"
+
+[permissions.http]
+host_from_config = ["url"]
+
+[[config]]
+key = "url"
+type = "url"
+label = "Webhook URL"
+help = "Receives a POST with a JSON body for each event"
+required = true
+secret = true
+
+[[config]]
+key = "include_path"
+type = "boolean"
+label = "Send the file's path"
+help = "Off sends the file name only"
+default = false

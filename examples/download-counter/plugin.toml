@@ -1,0 +1,35 @@
+name = "download-counter"
+version = "1.0.0"
+description = "Count finished downloads and bytes per day, and post a daily summary to a webhook"
+events = ["download.finished"]
+tick_seconds = 300
+
+author = "devclinton"
+license = "MIT"
+homepage = "https://github.com/devclinton/putio-sync-plugin-registry"
+docs = "https://github.com/devclinton/putio-sync-plugin-registry/tree/main/examples/download-counter#readme"
+repository = "https://github.com/devclinton/putio-sync-plugin-registry"
+issues = "https://github.com/devclinton/putio-sync-plugin-registry/issues"
+
+[permissions]
+store = true
+
+[permissions.http]
+host_from_config = ["summary_url"]
+
+[[config]]
+key = "summary_url"
+type = "url"
+label = "Summary webhook"
+help = "Receives one POST a day with yesterday's totals. Leave empty to only count."
+secret = true
+
+[[actions]]
+id = "show_today"
+label = "Show today's count"
+help = "Shows the totals so far today"
+
+[[actions]]
+id = "reset"
+label = "Reset counts"
+help = "Forgets all stored totals"

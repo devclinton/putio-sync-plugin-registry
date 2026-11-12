@@ -1,0 +1,44 @@
+name: Check entries
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check the examples' entries (no download)
+        run: python3 scripts/registry.py check --offline examples/entries/*.toml
+
+      # Set the PUTIO_SYNC_VERSION repository variable once a release has `plugins check`
+      # (feature 059); until then the manifest is compared with the entry but not run through it.
+      - name: Get putio-sync
+        if: vars.PUTIO_SYNC_VERSION != ''
+        run: |
+          v="${{ vars.PUTIO_SYNC_VERSION }}"
+          curl -fsSL "https://github.com/devclinton/putio-sync/releases/download/v$v/putio-sync-$v-linux-x86_64.tar.gz" | tar -xz
+          echo "PUTIO_SYNC=$PWD/putio-sync-$v-linux-x86_64/putio-sync" >> "$GITHUB_ENV"
+
+      - name: Check entries
+        run: python3 scripts/registry.py check ${PUTIO_SYNC:+--putio-sync "$PUTIO_SYNC"}
+
+      - name: Rebuild index.json
+        if: github.event_name == 'push'
+        run: |
+          python3 scripts/registry.py build
+          if ! git diff --quiet index.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Rebuild index.json" index.json
+            git push
+          fi

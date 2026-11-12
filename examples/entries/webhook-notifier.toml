@@ -1,0 +1,22 @@
+# Example entry for examples/webhook-notifier. A real entry lives in plugins/<name>.toml and
+# points to a release in the plugin's own repository.
+
+name = "webhook-notifier"
+description = "POST a small JSON message to a webhook when a download finishes or fails"
+author = "devclinton"
+repository = "https://github.com/devclinton/putio-sync-plugin-registry"
+license = "MIT"
+docs = "https://github.com/devclinton/putio-sync-plugin-registry/tree/main/examples/webhook-notifier#readme"
+issues = "https://github.com/devclinton/putio-sync-plugin-registry/issues"
+events = ["download.finished", "download.failed"]
+
+[hosts]
+fixed = []
+from_config = ["url"]
+
+[[releases]]
+version = "1.0.0"
+url = "https://github.com/devclinton/putio-sync-plugin-registry/releases/download/examples-v1.0.0/webhook-notifier-1.0.0.tar.gz"
+sha256 = "6b6ff5935501e89b34775b0b8c617ce59bc028d4257b54e79610ace82a37b0cb"
+min_putio_sync = "0.3.0"
+notes = "https://github.com/devclinton/putio-sync-plugin-registry/releases/tag/examples-v1.0.0"
